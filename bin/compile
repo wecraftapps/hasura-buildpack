@@ -2,11 +2,29 @@
 
 set -e
 
+export_env_dir() {
+  env_dir=$1
+  blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|LD_LIBRARY_PATH)$'}
+  if [ -d "$env_dir" ]; then
+    for e in $(ls $env_dir); do
+      echo "$e" | grep -qvE "$blacklist_regex" &&
+      export "$e=$(cat $env_dir/$e)"
+      :
+    done
+  fi
+}
+
+BUILD_DIR="$1"
+CACHE_DIR="$2"
+export_env_dir "$3"
+
 mkdir -p "$1/bin/"
-cp "bin/graphql-engine_v1.0.0" "$1/bin/graphql-engine"
+cp "bin/graphql-engine_v1.0.0" "$BUILD_DIR/bin/graphql-engine"
 echo "-----> hasura-buildpack: Installed to app/bin"
 
-cp bin/start-graphql-engine "$1/bin/"
+cp "bin/start-graphql-engine" "$BUILD_DIR/bin/start-graphql-engine"
 echo '-----> hasura-buildpack: Added start-graphql-engine to app/bin'
+
+PATH="$BUILD_DIR/bin:$PATH"
 
 exit 0

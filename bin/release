@@ -1,3 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-echo "--- {}"
+cat << EOF
+---
+default_process_types:
+  web: start-graphql-engine
+EOF
