@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+mkdir -p "$1/bin/"
+cp "bin/graphql-engine_v1.0.0" "$1/bin/graphql-engine"
+echo "-----> hasura-buildpack: Installed to app/bin"
+
+cp bin/start-graphql-engine "$1/bin/"
+echo '-----> hasura-buildpack: Added start-graphql-engine to app/bin'
+
+exit 0
