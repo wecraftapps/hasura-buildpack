@@ -27,6 +27,4 @@ cp "bin/start-graphql-engine" "$BUILD_DIR/bin/start-graphql-engine"
 chmod +x $BUILD_DIR/bin/start-graphql-engine
 echo '-----> hasura-buildpack: Added start-graphql-engine to app/bin'
 
-PATH="$BUILD_DIR/bin:$PATH"
-
 exit 0

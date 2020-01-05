@@ -1,6 +1,6 @@
 #!/bin/bash
 
-graphql-engine \
+./bin/graphql-engine \
     --database-url $DATABASE_URL \
     serve \
     --server-port $PORT
