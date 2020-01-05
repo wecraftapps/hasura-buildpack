@@ -20,9 +20,11 @@ export_env_dir "$3"
 
 mkdir -p "$1/bin/"
 cp "bin/graphql-engine_v1.0.0" "$BUILD_DIR/bin/graphql-engine"
+chmod +x $BUILD_DIR/bin/graphql-engine
 echo "-----> hasura-buildpack: Installed to app/bin"
 
 cp "bin/start-graphql-engine" "$BUILD_DIR/bin/start-graphql-engine"
+chmod +x $BUILD_DIR/bin/start-graphql-engine
 echo '-----> hasura-buildpack: Added start-graphql-engine to app/bin'
 
 PATH="$BUILD_DIR/bin:$PATH"
